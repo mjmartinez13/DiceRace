@@ -31,25 +31,27 @@ $(document).ready(function () {
               // animatePicture(redCarPosition, blueCarPosition);
 
               if (myGlobalDiceRaceGame.currentPlayer ===  myGlobalDiceRaceGame.player1) {
-                  animatePicture(redCarPosition, blueCarPosition);
                   if (rollDice1 === rollDice2) {
                     redCarPosition += rollDice1 + rollDice2;
                     $('.red-car').css({'margin-left': redCarPosition + '%', 'transition-duration': '0.8s'});
+                    animatePicture(redCarPosition, blueCarPosition);
                     doublePopUp();
                   }else {
                     redCarPosition += rollDice1 + rollDice2;
                     $('.red-car').css({'margin-left': redCarPosition + '%', 'transition-duration': '0.8s'});
+                    animatePicture(redCarPosition, blueCarPosition);
                     myGlobalDiceRaceGame.currentPlayer = myGlobalDiceRaceGame.player2;
                   }
               }else {
-                  animatePicture(redCarPosition, blueCarPosition);
                   if (rollDice1 === rollDice2) {
                     blueCarPosition += rollDice1 + rollDice2;
                     $('.blue-car').css({'margin-left': blueCarPosition + '%', 'transition-duration': '0.8s'});
+                    animatePicture(redCarPosition, blueCarPosition);
                     doublePopUp();
                   }else {
                     blueCarPosition += rollDice1 + rollDice2;
                     $('.blue-car').css({'margin-left': blueCarPosition + '%', 'transition-duration': '0.8s'});
+                    animatePicture(redCarPosition, blueCarPosition);
                     myGlobalDiceRaceGame.currentPlayer = myGlobalDiceRaceGame.player1;
                   }
               }
@@ -79,8 +81,8 @@ $(document).ready(function () {
     }
 
     function doublePopUp() {
-      $("body > div:not('#diceDouble') ").addClass('blur-body');
       $('#diceDouble').css({'opacity': '1', 'transition-duration': '0.5s'});
+      $("body > div:not('#diceDouble') ").addClass('blur-body');
       $('#doubleNum').html(rollDice1);
     }
 
@@ -94,6 +96,7 @@ $(document).ready(function () {
         $('#winner-container').css('opacity', '1');
         var redWinner = '<img src="https://media.giphy.com/media/fXLHAkIvVuggw/giphy.gif" alt="winner-gif">';
         $('#winner-container').append(redWinner);
+        $("body > div:not('#winner-container') ").addClass('blur-body');
       }
       if (b >= 92) {
         $('#winner-container').css('opacity', '1');
@@ -101,6 +104,7 @@ $(document).ready(function () {
         $('#winner-text').html('Blue');
         var blueWinner = '<img src="https://media.giphy.com/media/fXLHAkIvVuggw/giphy.gif" alt="winner-gif">';
         $('#winner-container').append(blueWinner);
+        $("body > div:not('#winner-container') ").addClass('blur-body');
       }
     }
 
@@ -128,7 +132,7 @@ $(document).ready(function () {
       }
     }
 
-      function checkDice1(dice1) {
+    function checkDice1(dice1) {
       if (dice1 === 6) {
         $('.dice-1').removeClass('active');
         $('#dot-1,#dot-3,#dot-4,#dot-6,#dot-7,#dot-9').addClass('active');
