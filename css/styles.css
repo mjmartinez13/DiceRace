@@ -1,0 +1,262 @@
+body {
+  background: url('../img/background.jpg')center center no-repeat;
+
+}
+.blur-body {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+.logo {
+  width: 400px;
+}
+h1,h2,h3 {
+  font-family: 'Luckiest Guy', cursive;
+}
+h4 {
+  text-align: center;
+}
+p {
+  font-family: 'Josefin Slab', serif;
+  font-size: 4rem;
+}
+h1 {
+  text-align: center;
+  display: inline-block;
+}
+h3 {
+  text-align: center;
+  font-size: 18rem;
+}
+.container {
+  width: 95%;
+}
+#red-car,
+#blue-car {
+  margin: 0;
+}
+.road {
+  background: url('../img/road.jpg')center center no-repeat;
+  background-size: cover;
+  height: 120px;
+  clear: both;
+  width: 100%;
+}
+
+.r1 {
+  margin-bottom: 5%;
+}
+
+.red-car,
+.blue-car {
+  width: 133px;
+  margin-top: 9px;
+  display: inline-block;
+  position: relative;
+}
+.flags {
+  width: 50px;
+  float: right;
+}
+.dice-1,
+.dice-2 {
+  margin: 7px;
+  height: 35px;
+  width: 34px;
+  border-radius: 50px;
+  float: left;
+}
+
+.dice-container {
+  padding: 2px;
+  position: relative;
+  top: 37px;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  background-color: #fbe051;
+  border-radius: 20px;
+  box-shadow: 6px 6px 5px #888888;
+  display: inline-block;
+  float: right;
+  margin-left: 25px;
+  right: 601px;
+}
+.active {
+  background-color: #000;
+}
+.active-2 {
+  background-color: #000;
+}
+.btn-red {
+  background-color: #920303 !important;
+}
+.btn-red:hover {
+  background-color: #c90101 !important;
+}
+.btn-blue {
+  background-color: #337ab7 !important;
+}
+.btn-blue:hover {
+  background-color: #275f8e !important;
+}
+.btn {
+  width: 300px;
+  height: 80px;
+  font-size: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  margin-top: 70px;
+  margin-left: 331px;
+
+}
+.btn:focus {
+  outline: none !important;
+}
+.btn:hover {
+  box-shadow: 0 5px #aaa;
+  transform:scale(0.1,1.2);
+   -webkit-transform:scale(1.1,1.2);
+   -moz-transform:scale(1.1,1.2);
+}
+.btn:active {
+  top: 5px;
+  box-shadow: none;
+}
+
+#winner-container {
+  background-color: rgba(0,0,0,0.6);
+  position: absolute;
+  width: 74%;
+  height: 500px;
+  padding: 10px;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border: 15px solid #ddd;
+  border-radius: 10px;
+  color: #fff;
+  opacity: 0;
+  box-shadow: 1px 1px 5px 1px #ccc;
+  transition: all 0.3s linear 0s;
+}
+#winner-img {
+  position: relative;
+  display: inline-block;
+}
+#winner-text {
+  font-size: 16rem;
+}
+#diceDouble {
+  position: absolute;
+  height: 273px;
+  width: 26%;
+  background-color: rgba(0,0,0,0.7);
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 5px;
+  text-align: center;
+  border: 5px solid #ddd;
+  opacity: 0;
+}
+
+.close-entitie {
+  font-size: 2.2rem;
+  margin-right: 5px;
+}
+#double-btn {
+  font-size: 2rem;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-weight: 100;
+}
+
+#double-btn:focus {
+  outline: none;
+}
+#double-btn:hover {
+  transform:scale(0.1,1.2);
+   -webkit-transform:scale(1.1,1.2);
+   -moz-transform:scale(1.1,1.2);
+}
+#double-btn:active {
+  top: 5px;
+  box-shadow: none !important;
+}
+#doubleNum {
+  position: relative;
+  top: 13px;
+  left: 28px;
+  font-size: 8rem;
+}
+
+.gamePrompt {
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+  width: 25%;
+  top: 26%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: 242px;
+  padding: 15px 10px;
+  color: #fff;
+  text-align: center;
+  border-radius: 20px;
+  opacity: 0;
+  border: 6px solid #ddd;
+}
+.form-btn {
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 8px 20px;
+}
+.form-btn:hover {
+  transform:scale(0.1,1.2);
+  -webkit-transform:scale(1.1,1.2);
+  -moz-transform:scale(1.1,1.2);
+}
+.form-control {
+  background: rgba(0,0,0,0.6);
+}
+.form-control-red {
+  color: #f44336;
+}
+.form-control-blue {
+  color: #0095ff;
+}
+.form-group label {
+  font-size: 2rem;
+}
+.red-color {
+  color: #f44336;
+}
+.blue-color {
+  color: #0095ff;
+}
+.funny-player1 {
+  position: absolute;
+  left: 426px;
+  bottom: 699px;
+  width: 80px;
+  opacity: 0;
+}
+.funny-player2 {
+  position: absolute;
+  left: 426px;
+  bottom: 432px;
+  width: 70px;
+  opacity: 0;
+}
+
+#funyPic {
+  background-image: url('../img/crying-face.jpg');
+}
