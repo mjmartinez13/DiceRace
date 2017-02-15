@@ -10,8 +10,7 @@ ion.sound({
 
 $(document).ready(function () {
 
-
-  // ion.sound.play('intro');
+  ion.sound.play('intro');
   $('.first').typeIt({
     speed: 120,
     cursor: false,
