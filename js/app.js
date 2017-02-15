@@ -1,25 +1,75 @@
+
 var myGlobalDiceRaceGame;
+
 $(document).ready(function () {
 
-    $('.gamePrompt').css('opacity', '1');
+  $('.first').typeIt({
+    speed: 120,
+    cursor: false,
+    autoStart: true
+  })
+    .tiType('Hi! welcome to DiceRace');
+
+  $('.readme-text').typeIt({
+    speed: 70,
+    cursor: false,
+    autoStart: false
+  })
+  .tiPause(4000)
+  .tiType("This is a simple game made to showcase the different technologies that I have learned over the past two weeks at <b>IronHack</b>.")
+  .tiBreak()
+  .tiBreak()
+  .tiType("Some of the new <b>skills</b> that I've learned and used in the game are:")
+  .tiBreak()
+  .tiPause(1000)
+  .tiType('HTML5,')
+  .tiPause(600)
+  .tiType(' CSS,')
+  .tiPause(600)
+  .tiType(' Bootstrap,')
+  .tiPause(600)
+  .tiType(' SASS,')
+  .tiPause(600)
+  .tiType(' JavaScript')
+  .tiPause(600)
+  .tiType(' and jQuery')
+  .tiPause(1000)
+  .tiDelete()
+  .tiPause(500)
+  .tiType('<h3>Enjoy!</h3>')
+  .tiBreak()
+  .tiPause(1000)
+  .tiType('<h1>You may exit now</h1>')
+  ;
+
+
+
+
+
+$('#game-intro-btn').click ( function () {
+
+    $('.game-intro').css('display','none');
+
+
+    $('.gamePrompt').show();
     $("body > div:not('.gamePrompt') ").addClass('blur-body');
 
 
-
-      $('.form-btn').click(function () {
+    $('.form-btn').click(function () {
 
         player1 = $('#redCar').val();
         player2 = $('#blueCar').val(); // 4
         myGlobalDiceRaceGame = new DiceRace(player1, player2);
         $('#red-car').html('Red car driver: ' + player1);
         $('#blue-car').html('Blue car driver: ' + player2);
-        $('.gamePrompt').css('opacity', '0');
+        $('.gamePrompt').css('display', 'none');
         $("body > div:not('.gamePrompt') ").removeClass('blur-body');
 
 
         firstPlayer();
         var redCarPosition = 0;
         var blueCarPosition = 0;
+
 
           $('.btn').click(function () {
               var rollDice1 = myGlobalDiceRaceGame.rollDice1();
@@ -63,14 +113,15 @@ $(document).ready(function () {
 
 }); // DOCUMENT.READY
 
+});
     //===== END DOCUMENT.READY =====
     function animatePicture(redCarPosition, blueCarPosition) {
       if (redCarPosition > blueCarPosition){
-          $('.funny-player1').css('opacity', '1').attr('src', 'img/happy-face.jpg');
-          $('.funny-player2').css('opacity', '1').attr('src', 'img/crying-face.jpg');
+          $('.funny-player1').show().attr('src', 'img/happy-face.jpg');
+          $('.funny-player2').show().attr('src', 'img/crying-face.jpg');
       }else if (redCarPosition < blueCarPosition) {
-          $('.funny-player2').css('opacity', '1').attr('src', 'img/happy-face.jpg');
-          $('.funny-player1').css('opacity', '1').attr('src', 'img/crying-face.jpg');
+          $('.funny-player2').show().attr('src', 'img/happy-face.jpg');
+          $('.funny-player1').show().attr('src', 'img/crying-face.jpg');
       }else if (redCarPosition >= blueCarPosition) {
 
       }
@@ -81,23 +132,23 @@ $(document).ready(function () {
     }
 
     function doublePopUp() {
-      $('#diceDouble').css({'opacity': '1', 'transition-duration': '0.5s'});
+      $('#diceDouble').show().css({'transition-duration': '0.5s'});
       $("body > div:not('#diceDouble') ").addClass('blur-body');
       $('#doubleNum').html(rollDice1);
     }
 
     function closeBtn() {
-      $('#diceDouble').css('opacity', '0');
+      $('#diceDouble').hide();
       $("body > div:not('#diceDouble') ").removeClass('blur-body');
     }
 
     function checkWinner(a, b) {
       if (a >= 92) {
-        $('#winner-container').css('opacity', '1');
+        $('#winner-container').show();
         $("body > div:not('#winner-container') ").addClass('blur-body');
       }
       if (b >= 92) {
-        $('#winner-container').css('opacity', '1');
+        $('#winner-container').show();
         $('#winner-img').attr('src', 'img/winner-blue-car.png');
         $('#winner-text').html('Blue');
         $("body > div:not('#winner-container') ").addClass('blur-body');
