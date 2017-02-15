@@ -1,14 +1,24 @@
 
 var myGlobalDiceRaceGame;
 
+ion.sound({
+  sounds: [{name: "winner-sound"},{name: "snap"},{name: "button_tiny"  },{name: "intro"}, {name: "computer_error"}, {name: "roll-dice"}],
+  path: "js/sounds1/",
+  preload: true
+});
+
+
 $(document).ready(function () {
 
+
+  // ion.sound.play('intro');
   $('.first').typeIt({
     speed: 120,
     cursor: false,
     autoStart: true
   })
-    .tiType('Hi! welcome to DiceRace');
+  .tiPause(1000)
+  .tiType('Hi! welcome to DiceRace');
 
   $('.readme-text').typeIt({
     speed: 70,
@@ -39,15 +49,11 @@ $(document).ready(function () {
   .tiType('<h3>Enjoy!</h3>')
   .tiBreak()
   .tiPause(1000)
-  .tiType('<h1>You may exit now</h1>')
-  ;
-
-
-
+  .tiType('<h1>You may exit now</h1>');
 
 
 $('#game-intro-btn').click ( function () {
-
+     ion.sound.play("button_tiny");
     $('.game-intro').css('display','none');
 
 
@@ -56,7 +62,7 @@ $('#game-intro-btn').click ( function () {
 
 
     $('.form-btn').click(function () {
-
+      ion.sound.play("button_tiny");
         player1 = $('#redCar').val();
         player2 = $('#blueCar').val(); // 4
         myGlobalDiceRaceGame = new DiceRace(player1, player2);
@@ -72,6 +78,7 @@ $('#game-intro-btn').click ( function () {
 
 
           $('.btn').click(function () {
+              ion.sound.play('roll-dice');
               var rollDice1 = myGlobalDiceRaceGame.rollDice1();
               var rollDice2 = myGlobalDiceRaceGame.rollDice2();
               checkDice1(rollDice1);
@@ -132,22 +139,27 @@ $('#game-intro-btn').click ( function () {
     }
 
     function doublePopUp() {
+      ion.sound.play("computer_error");
       $('#diceDouble').show().css({'transition-duration': '0.5s'});
       $("body > div:not('#diceDouble') ").addClass('blur-body');
       $('#doubleNum').html(rollDice1);
     }
 
     function closeBtn() {
+
+      ion.sound.play('button_tiny');
       $('#diceDouble').hide();
       $("body > div:not('#diceDouble') ").removeClass('blur-body');
     }
 
     function checkWinner(a, b) {
       if (a >= 92) {
+        ion.sound.play('winner-sound');
         $('#winner-container').show();
         $("body > div:not('#winner-container') ").addClass('blur-body');
       }
       if (b >= 92) {
+        ion.sound.play('winner-sound');
         $('#winner-container').show();
         $('#winner-img').attr('src', 'img/winner-blue-car.png');
         $('#winner-text').html('Blue');
