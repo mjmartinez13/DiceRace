@@ -3,7 +3,7 @@ var myGlobalDiceRaceGame;
 
 ion.sound({
   sounds: [{name: "winner-sound"},{name: "snap"},{name: "button_tiny"  },{name: "intro"}, {name: "computer_error"}, {name: "roll-dice"}],
-  path: "js/sounds1/",
+  path: "js/sounds/",
   preload: true
 });
 
