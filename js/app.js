@@ -94,16 +94,12 @@ $(document).ready(function () {
     function checkWinner(a, b) {
       if (a >= 92) {
         $('#winner-container').css('opacity', '1');
-        var redWinner = '<img src="https://media.giphy.com/media/fXLHAkIvVuggw/giphy.gif" alt="winner-gif">';
-        $('#winner-container').append(redWinner);
         $("body > div:not('#winner-container') ").addClass('blur-body');
       }
       if (b >= 92) {
         $('#winner-container').css('opacity', '1');
         $('#winner-img').attr('src', 'img/winner-blue-car.png');
         $('#winner-text').html('Blue');
-        var blueWinner = '<img src="https://media.giphy.com/media/fXLHAkIvVuggw/giphy.gif" alt="winner-gif">';
-        $('#winner-container').append(blueWinner);
         $("body > div:not('#winner-container') ").addClass('blur-body');
       }
     }
