@@ -1,14 +1,19 @@
 
 var myGlobalDiceRaceGame;
-
 ion.sound({
   sounds: [{name: "winner-sound"},{name: "snap"},{name: "button_tiny"  },{name: "intro"}, {name: "computer_error"}, {name: "roll-dice"}],
   path: "js/sounds/",
   preload: true
 });
-
-
+//=====================
+//DOCUMENT READY
+//=====================
 $(document).ready(function () {
+
+
+  //=====================
+  //INTRO
+  //=====================
 
   ion.sound.play('intro');
   $('.first').typeIt({
@@ -52,13 +57,15 @@ $(document).ready(function () {
 
 
 $('#game-intro-btn').click ( function () {
-     ion.sound.play("button_tiny");
+    ion.sound.stop('intro');
+    ion.sound.play("button_tiny");
     $('.game-intro').css('display','none');
-
-
     $('.gamePrompt').show();
     $("body > div:not('.gamePrompt') ").addClass('blur-body');
 
+    //=====================
+    //PICK A CAR
+    //=====================
 
     $('.form-btn').click(function () {
       ion.sound.play("button_tiny");
@@ -71,47 +78,118 @@ $('#game-intro-btn').click ( function () {
         $("body > div:not('.gamePrompt') ").removeClass('blur-body');
 
 
+
+
+        var card1 = 'Yey you got 2x roll value';
+        var card2 = 'You have to go Back';
+        var card3 = 'Sorry! you got nothing';
+        var cardPicked;
+
+      $('.card-div').click(function () {
+          var x = Math.floor(Math.random(1) * 10);
+
+          if (x <= 2 && x >= 0) {
+              $('.card-div').removeClass('card-background');
+              $('#card-item').html(card1);
+              cardPicked = card1;
+          } if (x >= 3 && x <= 6) {
+              $('.card-div').removeClass('card-background');
+              $('#card-item').html(card2);
+              cardPicked = card2;
+          } if(x >= 7 && x <= 10 ) {
+              $('.card-div').removeClass('card-background');
+              $('#card-item').html(card3);
+              cardPicked = card3;
+          }
+            console.log("card picked is: " + cardPicked);
+            return cardPicked;
+        });
+
+        //=====================
+        //ROLL DICE
+        //=====================
         firstPlayer();
+        var num;
         var redCarPosition = 0;
         var blueCarPosition = 0;
 
-
           $('.btn').click(function () {
               ion.sound.play('roll-dice');
+              $('.card-div').addClass('card-background');
+              $('#card-item').html('');
               var rollDice1 = myGlobalDiceRaceGame.rollDice1();
               var rollDice2 = myGlobalDiceRaceGame.rollDice2();
               checkDice1(rollDice1);
               checkDice2(rollDice2);
-
               checkCurrentPlayer();
-              // animatePicture(redCarPosition, blueCarPosition);
+              animatePicture(redCarPosition, blueCarPosition);
 
               if (myGlobalDiceRaceGame.currentPlayer ===  myGlobalDiceRaceGame.player1) {
-                  if (rollDice1 === rollDice2) {
+
+                console.log("Card picked in player 1 is: " + cardPicked);
+                    if (cardPicked === card1) {
                     redCarPosition += rollDice1 + rollDice2;
+                    redCarPosition += 5;
                     $('.red-car').css({'margin-left': redCarPosition + '%', 'transition-duration': '0.8s'});
                     animatePicture(redCarPosition, blueCarPosition);
-                    doublePopUp();
-                  }else {
+                    cardPicked = '';
+                   }
+                   if (cardPicked === card2) {
+                     console.log("Position before is: " + redCarPosition);
+                    redCarPosition -= (rollDice1 + rollDice2);
+
+                    // redCarPosition = redCarPosition - 5;
+
+                     console.log("Position after is: " + redCarPosition);
+                   $('.red-car').css({'margin-left': redCarPosition + '%', 'transition-duration': '0.8s'});
+                   animatePicture(redCarPosition, blueCarPosition);
+                   cardPicked = '';
+                  }
+                    if (rollDice1 === rollDice2) {
+                    redCarPosition += (rollDice1 + rollDice2);
+                    $('.red-car').css({'margin-left': redCarPosition + '%', 'transition-duration': '0.8s'});
+                    animatePicture(redCarPosition, blueCarPosition);
+                    doublePopUp(rollDice1);
+                    $('.btn').removeClass('btn-blue');
+                    $('.btn').addClass('btn-red');
+                  }
+                   else {
                     redCarPosition += rollDice1 + rollDice2;
                     $('.red-car').css({'margin-left': redCarPosition + '%', 'transition-duration': '0.8s'});
                     animatePicture(redCarPosition, blueCarPosition);
                     myGlobalDiceRaceGame.currentPlayer = myGlobalDiceRaceGame.player2;
                   }
-              }else {
+
+                }
+
+
+              //======================= if ENDS ====================
+              else {
+                    if (cardPicked === card1) {
+                    blueCarPosition += rollDice1 + rollDice2;
+                    blueCarPosition += 5;
+                    $('.blue-car').css({'margin-left': blueCarPosition + '%', 'transition-duration': '0.8s'});
+                    animatePicture(redCarPosition, blueCarPosition);
+                    cardPicked = '';
+                   }
+
                   if (rollDice1 === rollDice2) {
                     blueCarPosition += rollDice1 + rollDice2;
                     $('.blue-car').css({'margin-left': blueCarPosition + '%', 'transition-duration': '0.8s'});
                     animatePicture(redCarPosition, blueCarPosition);
-                    doublePopUp();
-                  }else {
+                    doublePopUp(rollDice1);
+                    $('.btn').removeClass('btn-red');
+                    $('.btn').addClass('btn-blue');
+                  }
+                  else {
                     blueCarPosition += rollDice1 + rollDice2;
                     $('.blue-car').css({'margin-left': blueCarPosition + '%', 'transition-duration': '0.8s'});
                     animatePicture(redCarPosition, blueCarPosition);
                     myGlobalDiceRaceGame.currentPlayer = myGlobalDiceRaceGame.player1;
                   }
-              }
+              } // ====================== else ENDS =======================
               checkWinner(redCarPosition, blueCarPosition);
+              showCard(redCarPosition, blueCarPosition);
 
           }); // GAME CLICK
 
@@ -119,8 +197,12 @@ $('#game-intro-btn').click ( function () {
 
 }); // DOCUMENT.READY
 
-});
-    //===== END DOCUMENT.READY =====
+});//=====================
+  //ENDS DOCUMENT READY
+  //=====================
+
+
+
     function animatePicture(redCarPosition, blueCarPosition) {
       if (redCarPosition > blueCarPosition){
           $('.funny-player1').show().attr('src', 'img/happy-face.jpg');
@@ -137,7 +219,7 @@ $('#game-intro-btn').click ( function () {
 
     }
 
-    function doublePopUp() {
+    function doublePopUp(rollDice1) {
       ion.sound.play("computer_error");
       $('#diceDouble').show().css({'transition-duration': '0.5s'});
       $("body > div:not('#diceDouble') ").addClass('blur-body');
@@ -149,6 +231,12 @@ $('#game-intro-btn').click ( function () {
       ion.sound.play('button_tiny');
       $('#diceDouble').hide();
       $("body > div:not('#diceDouble') ").removeClass('blur-body');
+    }
+
+    function showCard(a,b) {
+      if(a >= 25 || b >= 25) {
+        $('.card-div').addClass('card');
+      }
     }
 
     function checkWinner(a, b) {

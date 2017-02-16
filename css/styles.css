@@ -303,3 +303,20 @@ h3 {
   width: 70%;
   margin: 0 auto;
 }
+
+.card {
+  position: absolute;
+  height: 160px;
+  float: right;
+  width: 108px;
+  right: 449px;
+  top: 656px;
+  background-color: #fff;
+  text-align: center;
+  font-size: 2.6rem;
+  font-family: 'Josefin Slab', serif;
+}
+.card-background {
+  background: url('../img/card.jpg') center center no-repeat;
+  background-size: cover;
+}
