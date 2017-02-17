@@ -183,7 +183,6 @@ $('#game-intro-btn').click ( function () {
                     doublePopUp(rollDice1);
                     $('.btn').removeClass('btn-blue');
                     $('.btn').addClass('btn-red');
-                    myGlobalDiceRaceGame.currentPlayer = myGlobalDiceRaceGame.player1;
                   }
                    else {
                     redCarPosition += rollDice1 + rollDice2;
@@ -214,13 +213,12 @@ $('#game-intro-btn').click ( function () {
                    myGlobalDiceRaceGame.currentPlayer = myGlobalDiceRaceGame.player1;
                  }
                   else if (rollDice1 === rollDice2) {
-                    blueCarPosition -= rollDice1 + rollDice2;
+                    blueCarPosition += (rollDice1 + rollDice2);
                     $('.blue-car').css({'margin-left': blueCarPosition + '%', 'transition-duration': '0.8s'});
                     animatePicture(redCarPosition, blueCarPosition);
                     doublePopUp(rollDice1);
                     $('.btn').removeClass('btn-red');
                     $('.btn').addClass('btn-blue');
-                    myGlobalDiceRaceGame.currentPlayer = myGlobalDiceRaceGame.player2;
                   }
                   else {
                     blueCarPosition += rollDice1 + rollDice2;
