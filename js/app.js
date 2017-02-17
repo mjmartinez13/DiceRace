@@ -10,7 +10,6 @@ ion.sound({
 //=====================
 $(document).ready(function () {
 
-
   // =====================
   // INTRO
   // =====================
@@ -229,6 +228,7 @@ $('#game-intro-btn').click ( function () {
                   }
               } // ====================== else ENDS =======================
               checkWinner(redCarPosition, blueCarPosition);
+              ion.sound.play('dice-race');
               showCard(redCarPosition, blueCarPosition);
 
           }); // GAME CLICK
